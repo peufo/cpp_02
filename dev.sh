@@ -1,7 +1,5 @@
 #!/bin/bash
 
-PROG="./phonebook"
-SRC_DIR="./src"
 LEAKS_CHECK=true
 
 if [ $(uname) = "Linux" ]; then
@@ -18,9 +16,9 @@ else
 fi
 
 watch() {
-	DIR="./ex0$1"
 	STATE_A=""
 	PROG_PID=""
+	PROG_NAME="./$(cat Makefile | grep "^NAME\t" | cut -d'=' -f2 | xargs)"
 
 	while [[ true ]]
 	do
@@ -30,15 +28,15 @@ watch() {
 			clear
 			info "───────── $(date) ─────────\n"
 			sync_sources
-			rm -f "$PROG"
+			rm -f "$PROG_NAME"
 			make
-			if [ ! -f "$PROG" ]; then
+			if [ ! -f "$PROG_NAME" ]; then
 				error "COMPILATION ERROR"
 			else
 				success "COMPILATION OK\n"
 				info "───────────────────────────────────────────────────\n"
 
-				$LEAKS_CMD $PROG
+				$LEAKS_CMD $PROG_NAME
 
 			fi
 		fi
@@ -57,7 +55,7 @@ get_state() {
 }
 
 sync_sources() {
-	SOURCES=$(ls *.cpp | sed "s;$SRC_DIR/;;g" | tr '\n' ' ')
+	SOURCES=$(ls *.cpp | tr '\n' ' ')
 	SED_COMMAND="s;^SOURCES	.*;SOURCES			=	$SOURCES;"
 	if [ $(uname) = "Linux" ];  then
 		sed -i -e "$SED_COMMAND" "./Makefile"
