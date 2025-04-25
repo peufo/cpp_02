@@ -12,6 +12,26 @@ Fixed::Fixed(const Fixed & fixed)
 	*this = fixed;
 }
 
+Fixed::Fixed(const int value)
+{
+	this->raw = value << this->fractional_bits;
+}
+
+Fixed::Fixed(const float value)
+{
+	this->raw = roundf(value * (1 << this->fractional_bits));
+}
+
+float Fixed::toFloat() const
+{
+	return ((float)this->raw / (1 << this->fractional_bits));
+}
+
+int Fixed::toInt() const
+{
+	return (this->raw >> this->fractional_bits);
+}
+
 Fixed::~Fixed()
 {
 	std::cout << "Destructor called" << std::endl;
@@ -24,6 +44,11 @@ Fixed & Fixed::operator=(const Fixed & fixed)
 		return (*this);
 	this->raw = fixed.getRawBits();
 	return (*this);
+}
+
+std::ostream& operator<<(std::ostream& os, const Fixed& fixed)
+{
+	return (os << fixed.toFloat());
 }
 
 int Fixed::getRawBits(void) const
