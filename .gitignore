@@ -3,3 +3,4 @@ prog
 megaphone
 phonebook
 *.log
+.vscode/settings.json
