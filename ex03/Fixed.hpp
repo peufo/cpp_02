@@ -32,10 +32,10 @@ class Fixed
 		friend bool operator<=(const Fixed& a, const Fixed& b);
 		friend bool operator!=(const Fixed& a, const Fixed& b);
 
-		int		getRawBits( void ) const;
-		void	setRawBits( int const raw );
-		float	toFloat() const;
-		int		toInt() const;
+		int getRawBits( void ) const;
+		void setRawBits( int const raw );
+		float toFloat() const;
+		int toInt() const;
 		static Fixed& max(Fixed& a, Fixed& b);
 		static const Fixed& max(const Fixed& a, const Fixed& b);
 		static Fixed& min(Fixed& a, Fixed& b);
