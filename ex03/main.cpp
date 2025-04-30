@@ -26,13 +26,13 @@ static bool bsp(Point const a, Point const b, Point const c, Point const point)
 	return (total == (areaAB + areaBC + areaCA));
 }
 
-static void bspTest(Point const a, Point const b, Point const c, Point const point, bool expected)
+static void bspTest(Point const a, Point const b, Point const c, Point const point, bool isInside)
 {
-	if (expected)
+	if (isInside)
 		std::cout << "Expected inside\t\t";
 	else
 		std::cout << "Expected outside\t";
-	if (bsp(a, b, c, point) == expected)
+	if (bsp(a, b, c, point) == isInside)
 		std::cout << "SUCCESS" << std::endl;
 	else
 		std::cout << "FAILED\t" << std::endl;
@@ -40,12 +40,17 @@ static void bspTest(Point const a, Point const b, Point const c, Point const poi
 
 int main( void )
 {
-	Point a(-3, -2);
-	Point b(3.6, 1.07);
-	Point c(-2.68, 2.61);
+	Point a(-2.7, 6.12);
+	Point b(-3.32, -1.1);
+	Point c(5.32, 4.32);
 
-	bspTest(a, b, c, Point(-1.64, 0.63), true);
-	bspTest(a, b, c, Point(-3.16, 1.09), false);
-	bspTest(a, b, c, Point(0.45, 2.83), false);
+	bspTest(a, b, c, Point(-4.7, 4.32), false);
+	bspTest(a, b, c, Point(2.16, 6.24), false);
+	bspTest(a, b, c, Point(3.44, 2.96), false);
+	bspTest(a, b, c, Point(3, 3), true);
+	bspTest(a, b, c, Point(0, 3), true);
+	bspTest(a, b, c, Point(-3, 1), true);
+	bspTest(a, b, c, Point(-2.94, -0.58), true);
+
 	return 0;
 }
