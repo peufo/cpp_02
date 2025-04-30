@@ -16,7 +16,7 @@ class Fixed
 		~Fixed();
 
 		Fixed& operator=(const Fixed& fixed);
-		friend std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
+		
 		Fixed operator+(const Fixed& fixed);
 		Fixed operator-(const Fixed& fixed);
 		Fixed operator*(const Fixed& fixed);
@@ -25,12 +25,12 @@ class Fixed
 		Fixed operator++(int);
 		Fixed& operator--();
 		Fixed operator--(int);
-		friend bool operator==(const Fixed& a, const Fixed& b);
-		friend bool operator>(const Fixed& a, const Fixed& b);
-		friend bool operator<(const Fixed& a, const Fixed& b);
-		friend bool operator>=(const Fixed& a, const Fixed& b);
-		friend bool operator<=(const Fixed& a, const Fixed& b);
-		friend bool operator!=(const Fixed& a, const Fixed& b);
+		bool operator==(const Fixed& b);
+		bool operator>(const Fixed& b);
+		bool operator<(const Fixed& b);
+		bool operator>=(const Fixed& b);
+		bool operator<=(const Fixed& b);
+		bool operator!=(const Fixed& b);
 
 		int		getRawBits( void ) const;
 		void	setRawBits( int const raw );
@@ -41,5 +41,7 @@ class Fixed
 		static Fixed& min(Fixed& a, Fixed& b);
 		static const Fixed& min(const Fixed& a, const Fixed& b);
 };
+
+std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
 
 #endif

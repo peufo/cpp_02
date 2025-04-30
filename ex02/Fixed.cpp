@@ -89,34 +89,34 @@ Fixed Fixed::operator--(int)
 	return (old);
 }
 
-bool operator==(const Fixed & a, const Fixed & b)
+bool Fixed::operator==(const Fixed & rhs)
 {
-	return (a.toFloat() == b.toFloat());
+	return (this->raw == rhs.raw);
 }
 
-bool operator<(const Fixed & a, const Fixed & b)
+bool Fixed::operator<(const Fixed & rhs)
 {
-	return (a.toFloat() < b.toFloat());
+	return (this->raw < rhs.raw);
 }
 
-bool operator>(const Fixed & a, const Fixed & b)
+bool Fixed::operator>(const Fixed & rhs)
 {
-	return (a.toFloat() > b.toFloat());
+	return (this->raw > rhs.raw);
 }
 
-bool operator<=(const Fixed & a, const Fixed & b)
+bool Fixed::operator<=(const Fixed & rhs)
 {
-	return (a.toFloat() <= b.toFloat());
+	return (this->raw <= rhs.raw);
 }
 
-bool operator>=(const Fixed & a, const Fixed & b)
+bool Fixed::operator>=(const Fixed & rhs)
 {
-	return (a.toFloat() >= b.toFloat());
+	return (this->raw >= rhs.raw);
 }
 
-bool operator!=(const Fixed & a, const Fixed & b)
+bool Fixed::operator!=(const Fixed & rhs)
 {
-	return (a.toFloat() != b.toFloat());
+	return (this->raw != rhs.raw);
 }
 
 // METHODS INSTANCE

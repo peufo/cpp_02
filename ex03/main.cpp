@@ -1,35 +1,6 @@
 #include <iostream>
-#include "Fixed.hpp"
+#include "bsp.hpp"
 #include "Point.hpp"
-
-static float subArea(Point const a, Point const b, Point const c)
-{
-	return (a.getX() * (b.getY() - c.getY())).toFloat();
-}
-
-static float area(Point const a, Point const b, Point const c)
-{
-	float area = (subArea(a, b, c) + subArea(b, c, a) + subArea(c, a, b)) / 2;
-	
-	if (area < 0)
-		return (area * -1);
-	return (area);
-}
-
-static bool bsp(Point const a, Point const b, Point const c, Point const point)
-{
-	float total(area(a, b, c));
-	float areaAB(area(a, b, point));
-	float areaBC(area(b, c, point));
-	float areaCA(area(c, a, point));
-	float diff = total - (areaAB + areaBC + areaCA);
-
-	float smallest = Fixed::getSmallestRepresentable();
-	(void)smallest;
-	if (diff < 0)
-		diff = -diff;
-	return (diff <= Fixed::getSmallestRepresentable());
-}
 
 static void bspTest(Point const a, Point const b, Point const c, Point const point, bool isInside)
 {
