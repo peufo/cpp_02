@@ -19,7 +19,7 @@ Fixed::Fixed(const int value)
 
 Fixed::Fixed(const float value)
 {
-	this->raw = roundf(value * (1 << this->fractional_bits));
+	this->raw = value * (1 << this->fractional_bits);
 }
 
 float Fixed::toFloat() const
