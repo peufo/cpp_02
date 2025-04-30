@@ -166,3 +166,8 @@ const Fixed& Fixed::min(const Fixed& a, const Fixed& b)
 		return (a);
 	return (b);
 }
+
+float Fixed::getSmallestRepresentable()
+{
+	return (1.0f / (1 << Fixed::fractional_bits));
+}

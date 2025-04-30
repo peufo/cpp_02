@@ -22,8 +22,13 @@ static bool bsp(Point const a, Point const b, Point const c, Point const point)
 	float areaAB(area(a, b, point));
 	float areaBC(area(b, c, point));
 	float areaCA(area(c, a, point));
+	float diff = total - (areaAB + areaBC + areaCA);
 
-	return (total == (areaAB + areaBC + areaCA));
+	float smallest = Fixed::getSmallestRepresentable();
+	(void)smallest;
+	if (diff < 0)
+		diff = -diff;
+	return (diff <= Fixed::getSmallestRepresentable());
 }
 
 static void bspTest(Point const a, Point const b, Point const c, Point const point, bool isInside)

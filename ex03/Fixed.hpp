@@ -39,6 +39,7 @@ class Fixed
 		static const Fixed& max(const Fixed& a, const Fixed& b);
 		static Fixed& min(Fixed& a, Fixed& b);
 		static const Fixed& min(const Fixed& a, const Fixed& b);
+		static float getSmallestRepresentable();
 };
 
 #endif
